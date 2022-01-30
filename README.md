@@ -1,7 +1,7 @@
 ## Dishtansya Exam Project
 Steps to run this project locally
 
-1. Clone
+1. Clone the repository
 2. Run the following commands
     - composer install
     - composer dumpautoload
@@ -13,6 +13,8 @@ Steps to run this project locally
     - php artisan db:seed
     - php artisan passport:install
     - npm install && npm run dev
+5. Run the project
+    -php artisan serve
 
 Note: Email credentials are already set up. I used my dummy email for this test.
 if the steps has a flow please contact me bryanjadeloplop@gmail.com
