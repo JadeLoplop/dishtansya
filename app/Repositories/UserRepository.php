@@ -18,4 +18,9 @@ class UserRepository extends BaseRepository
         return User::where('email', $email)->first();
     }
 
+    public function findEmail($email)
+    {
+        return $this->checkEmailDuplicate($email);
+    }
+
 }

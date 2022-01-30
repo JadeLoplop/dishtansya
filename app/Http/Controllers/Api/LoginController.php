@@ -29,8 +29,16 @@ class LoginController extends Controller
     {
         try {
             $credentials = $request->only('email', 'password');
+            $userAccount = $this->repository->findEmail($request->email);
+            if ($userAccount) {
+                $subRes = $this->service->subRetry($userAccount, 1);
+                if (!$subRes) {
+                    return response()->json(['message' => 'User account was temporarily locked.'], 401);
+                }
+            }
             if (Auth::attempt($credentials)) {
                 $user = $this->repository->getById(auth()->user()->id);
+                $this->service->resetRetry($user);
                 return response()->json([
                     'access_token' => $user->createToken('appToken')->accessToken,
                 ]);

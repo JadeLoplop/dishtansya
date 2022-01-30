@@ -34,10 +34,10 @@ class OrderController extends Controller
         try {
             $product = $this->productRepository->getById($request->product_id);
             if (!$product) {
-                return response()->json(['message' => 'Unable to find product'], 401);
+                return response()->json(['message' => 'Unable to find product'], 400);
             }
             if ($request->quantity > $product->available_stock) {
-                return response()->json(['message' => 'Failed to order this product due to unavailability of the stock'], 401);
+                return response()->json(['message' => 'Failed to order this product due to unavailability of the stock'], 400);
             } else {
                 $data = [
                     'product_name' => $product->name,
